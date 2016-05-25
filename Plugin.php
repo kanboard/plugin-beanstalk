@@ -17,8 +17,14 @@ class Plugin extends Base
 {
     public function initialize()
     {
-        $queue = new Queue(new BeanstalkQueueAdapter(new Pheanstalk(BEANSTALKD_HOSTNAME), QUEUE_NAME));
-        $this->queueManager->setQueue($queue);
+        $connection = new Pheanstalk(BEANSTALKD_HOSTNAME);
+
+        if ($connection->getConnection()->isServiceListening()) {
+            $queue = new Queue(new BeanstalkQueueAdapter($connection, QUEUE_NAME));
+            $this->queueManager->setQueue($queue);
+        } else {
+            $this->logger->error('Beanstalkd daemon is not reachable');
+        }
     }
 
     public function onStartup()
