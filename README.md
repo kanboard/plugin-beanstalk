@@ -3,7 +3,7 @@ Beanstalk Queue Driver
 
 [![Build Status](https://travis-ci.org/kanboard/plugin-beanstalk.svg?branch=master)](https://travis-ci.org/kanboard/plugin-beanstalk)
 
-This plugin use [Beanstalkd](http://kr.github.io/beanstalkd/) to process background jobs for Kanboard.
+This plugin use [Beanstalk](http://kr.github.io/beanstalkd/) to process background jobs for Kanboard.
 
 Author
 ------
@@ -14,6 +14,7 @@ Author
 Requirements
 ------------
 
+- Kanboard >= 1.0.29
 - PHP >= 5.3.3
 - Beanstalkd daemon
 
