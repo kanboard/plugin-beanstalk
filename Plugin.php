@@ -56,4 +56,9 @@ class Plugin extends Base
     {
         return 'https://github.com/kanboard/plugin-beanstalk';
     }
+
+    public function getCompatibleVersion()
+    {
+        return '>=1.0.39';
+    }
 }
