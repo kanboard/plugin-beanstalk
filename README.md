@@ -43,7 +43,7 @@ define('BEANSTALKD_HOSTNAME', '127.0.0.1');
 You also need to run the Kanboard's worker:
 
 ```bash
-./kanboard worker
+./cli worker
 ```
 
 The worker must have the same permissions as the web application (same user).
