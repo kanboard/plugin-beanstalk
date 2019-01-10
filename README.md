@@ -48,3 +48,27 @@ You also need to run the Kanboard's worker:
 
 The worker must have the same permissions as the web application (same user).
 You should run the worker with a process manager like [supervisord](http://supervisord.org) or similar.
+
+Docker help
+-----------
+
+Using the official Docker distributed for Kanboard, you can implement this approach following these simple steps:
+
+* Create a subfolder /etc/services.d/cli_worker and a text file /etc/services.d/cli_worker/run
+* Create a subfolder /etc/services.d/beanstalk and a text file /etc/services.d/beanstalk/run
+
+These "run" files are required for s6-svscan already included in the image to automatically load and supervise the two processes required
+
+* For cli_worker/run define contents:
+```
+#!/bin/execlineb -P
+/usr/bin/beanstalkd
+```
+
+* For beanstalk/run define contents:
+```
+#!/bin/execlineb -P
+/var/www/app/cli worker
+```
+
+Restart the docker and you should be all set.
